@@ -8,14 +8,6 @@ def employee_home(request):
 
 def add_employee(request):
 
-    # fetch request param
-    # validate request param
-    # apply logic if required to create databse entity
-    # convert into entity
-    # save entity to database
-    # prepare return response entity OR message
-    # return response
-
     error_message = ''
     if request.method=="POST":
         #data fetch
@@ -52,14 +44,12 @@ def add_employee(request):
 
 def delete_employee(request,id):
         employee = Employee.objects.get(id=id)
-        print(employee)
         employee.delete()
         return redirect("/employee/home/")
 
 def update_employee(request,id):
         if request.method=="GET":
             employee = Employee.objects.get(id=id)
-            # employee.save()
             return render(request,"employee/update_employee.html",{"employee":employee})
         
         elif request.method=="POST":
@@ -84,7 +74,6 @@ def update_employee(request,id):
                 e.working=False
             else:
                 e.working=True
-            #save the object
             e.save()
             return redirect("employee_home")
-            
+                    
