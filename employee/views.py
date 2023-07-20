@@ -20,6 +20,7 @@ def add_employee(request):
     if request.method=="POST":
         #data fetch
         emp_name = request.POST.get("emp_name")
+        emp_salary = request.POST.get("emp_salary")
         emp_phone = request.POST.get("emp_phone")
         emp_address = request.POST.get("emp_address")
         emp_working = request.POST.get("emp_working")
@@ -37,6 +38,7 @@ def add_employee(request):
         e = Employee()
         e.name = emp_name
         e.phone = emp_phone
+        e.salary = emp_salary
         e.address = emp_address
         e.department = emp_department
         if emp_working is None:
@@ -63,6 +65,7 @@ def update_employee(request,id):
         elif request.method=="POST":
             emp_name = request.POST.get("emp_name")
             emp_phone = request.POST.get("emp_phone")
+            emp_salary = request.POST.get("emp_salary")
             emp_address = request.POST.get("emp_address")
             emp_working = request.POST.get("emp_working")
             emp_department = request.POST.get("emp_department")
@@ -74,6 +77,7 @@ def update_employee(request,id):
             e = Employee.objects.get(id=id)
             e.name = emp_name
             e.phone = emp_phone
+            e.salary = emp_salary
             e.address = emp_address
             e.department = emp_department
             if emp_working is None:
