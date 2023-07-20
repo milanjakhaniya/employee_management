@@ -39,7 +39,7 @@
                       <td>{{i.working}}</td>
                       <td>{{i.department}}</td>
                       <td>
-                        {% comment %} <a href="{% url '' %}" class="btn btn-success btn-sm">Update</a> {% endcomment %}
+                        <a href="/employee/update_employee/{{i.id}}/" class="btn btn-success btn-sm">Update</a>
                         <a class="btn btn-danger btn-sm" href="/employee/delete_employee/{{i.id}}/">Delete</a>
                       </td>
                     </tr>
