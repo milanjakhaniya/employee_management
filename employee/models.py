@@ -21,3 +21,11 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.testimonial
+    
+class Feedbackform(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    feedback = models.TextField()
+
+    def __str__(self):
+        return self.name

@@ -1,5 +1,5 @@
 from django.shortcuts import render ,redirect
-from .models import Employee,Testimonial
+from .models import Employee,Testimonial, Feedbackform
 
 # Create your views here.
 def employee_home(request):
@@ -81,6 +81,21 @@ def testimonials(request):
      testimonial = Testimonial.objects.all()
      return render(request,"employee/testimonials.html",{"testimonial":testimonial})
 
+# def feedback(request):
+#      feed_back = Testimonial.objects.all()
+#      return render(request,"employee/feedback.html",{"feedback":feed_back})
+
 def feedback(request):
-     feed_back = Testimonial.objects.all()
-     return render(request,"employee/feedback.html",{"feedback":feed_back})
+     if request.method=="POST":
+          emp_email = request.POST.get("emp_email")
+          emp_name = request.POST.get("emp_name")
+          emp_feedback = request.POST.get("emp_feedback")
+
+          feedback1 = Feedbackform()
+          feedback1.email = emp_email
+          feedback1.name = emp_name
+          feedback1.feedback = emp_feedback
+          feedback1.save()
+
+     return render(request,"employee/feedback.html",{})
+     
