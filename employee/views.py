@@ -4,7 +4,7 @@ from .models import Employee,Testimonial, Feedbackform
 # Create your views here.
 def employee_home(request):
     employee = Employee.objects.all()
-    return render(request,"employee/home.html",{"employee":employee})
+    return render(request,"home.html",{"employee":employee})
 
 def add_employee(request):
 
@@ -22,7 +22,7 @@ def add_employee(request):
         
         if not emp_name:
              error_message = "Enter valid employee name"
-             return render(request,"employee/add_employee.html",{"error_message": error_message})
+             return render(request,"add_employee.html",{"error_message": error_message})
         
         #if any data validation so it is here
 
@@ -39,18 +39,18 @@ def add_employee(request):
             e.working=True
         #save the object
         e.save()
-        return redirect("/employee/home/")
-    return render(request,"employee/add_employee.html",{"error_message": error_message})
+        return redirect("/")
+    return render(request,"add_employee.html",{"error_message": error_message})
 
 def delete_employee(request,id):
         employee = Employee.objects.get(id=id)
         employee.delete()
-        return redirect("/employee/home/")
+        return redirect("/")
 
 def update_employee(request,id):
         if request.method=="GET":
             employee = Employee.objects.get(id=id)
-            return render(request,"employee/update_employee.html",{"employee":employee})
+            return render(request,"update_employee.html",{"employee":employee})
         
         elif request.method=="POST":
             emp_name = request.POST.get("emp_name")
@@ -62,7 +62,7 @@ def update_employee(request,id):
                     # validation
             if not emp_name:
                 error_message = "Enter valid employee name"
-                return render(request,"employee/add_employee.html",{"error_message": error_message})
+                return render(request,"add_employee.html",{"error_message": error_message})
             
             e = Employee.objects.get(id=id)
             e.name = emp_name
@@ -75,15 +75,11 @@ def update_employee(request,id):
             else:
                 e.working=True
             e.save()
-            return redirect("employee_home")
+            return redirect("/")
                     
 def testimonials(request):
      testimonial = Testimonial.objects.all()
-     return render(request,"employee/testimonials.html",{"testimonial":testimonial})
-
-# def feedback(request):
-#      feed_back = Testimonial.objects.all()
-#      return render(request,"employee/feedback.html",{"feedback":feed_back})
+     return render(request,"testimonials.html",{"testimonial":testimonial})
 
 def feedback(request):
      if request.method=="POST":
@@ -97,5 +93,5 @@ def feedback(request):
           feedback1.feedback = emp_feedback
           feedback1.save()
 
-     return render(request,"employee/feedback.html",{})
+     return render(request,"feedback.html",{})
      
