@@ -20,7 +20,7 @@ class Testimonial(models.Model):
     rating = models.IntegerField(max_length=1,validators=[MaxValueValidator(5)])
 
     def __str__(self):
-        return self.testimonial
+        return self.name
     
 class Feedbackform(models.Model):
     name = models.CharField(max_length=200)

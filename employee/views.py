@@ -25,7 +25,6 @@ def add_employee(request):
              return render(request,"add_employee.html",{"error_message": error_message})
         
         #if any data validation so it is here
-
         #create object
         e = Employee()
         e.name = emp_name
@@ -39,6 +38,7 @@ def add_employee(request):
             e.working=True
         #save the object
         e.save()
+
         return redirect("/")
     return render(request,"add_employee.html",{"error_message": error_message})
 
